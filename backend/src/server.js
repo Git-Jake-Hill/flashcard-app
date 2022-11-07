@@ -40,10 +40,28 @@ app.get("/hello", (res, req) => {
 //     "tag": "['algo','cs']"
 // }
 
-app.post("/post", (res, req) => {
-  req.send(
-    `question: ${res.body.question}, answer: ${res.body.answer} known: ${res.body.known} tag: ${res.body.tag}`
-  );
+// get cards from specified deck
+app.get("/api/cards/:deck", async (req, res) => {
+  const { deck } = req.params;
+
+  if (deck === "all") {
+    const allCards = [];
+    res.send(allCards);
+  } else {
+    const curDeck = mongoose.model(deck, cardSchema);
+    const currentCards = await curDeck.find({});
+    if (currentCards) {
+      res.send(currentCards);
+    } else res.send([]);
+  }
+});
+
+// cards only
+app.get("/api/cards", async (req, res) => {
+  //   req.send(cards);
+  let currentCards = await Cards.find({});
+  req.send(currentCards);
+});
 
   var newCard = new Cards(
     `{question: ${res.body.question}, answer: ${res.body.answer} known: ${res.body.known} tag: ${res.body.tag}}`
