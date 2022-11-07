@@ -27,54 +27,11 @@ function Cards() {
                   id="formAnswer"
                   placeholder="answer..."
                 />
-              </div>
-            </div>
-            <div className="col-4 align-self-end mb-2">
-              <button type="submit" class="btn btn-primary btn-sm">
-                Add Card
-              </button>
-            </div>
-          </div>
-        </form>
-        <hr />
-      </div>
       <div className="cardList">
-        <h2 className=" cardCount mt-4">44 Cards</h2>
-
-        <div className="row cardItem">
-          <div className="col text-truncate" style={{ "max-width": "75vw" }}>
-            What is the runtime of O(log n) and a bit longer q here?
-          </div>
-          <div className="col-2 ml-6 p-0 d-flex justify-content-end dropdown">
-            <button
-              class="btn btn-outline-secondary btn-sm dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton1"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Edit
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li>
-                <a class="dropdown-item" href="#">
-                  Edit card
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#">
-                  Toggle known
-                </a>
-              </li>
-              <hr />
-              <li>
-                <a class="dropdown-item" href="#">
-                  Delete
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <h2 className=" cardCount mt-4">{cardList.length} Cards</h2>
+        {cardList.map((item, index) => {
+          return <Card key={index} question={item.question} />;
+        })}
       </div>
     </div>
   );
