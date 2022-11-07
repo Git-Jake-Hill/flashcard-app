@@ -17,6 +17,7 @@ const cardSchema = new mongoose.Schema({
   known: { type: Boolean, default: false },
 });
 
+// Model name is Cards
 let Cards = mongoose.model("Cards", cardSchema);
 
 var cards = [
@@ -27,11 +28,6 @@ var cards = [
     tag: "['algo','cs']",
   },
 ];
-
-app.get("/hello", (res, req) => {
-  req.send(cards);
-});
-
 // sample post object
 // {
 //     "question": "Some question here",
@@ -63,12 +59,20 @@ app.get("/api/cards", async (req, res) => {
   req.send(currentCards);
 });
 
-  var newCard = new Cards(
-    `{question: ${res.body.question}, answer: ${res.body.answer} known: ${res.body.known} tag: ${res.body.tag}}`
-  );
+app.post("/api/new-card", async (req, res) => {
+  const postDeck = req.body.tag;
+  //   console.log(req.body);
+  let newDeck = mongoose.model(postDeck, cardSchema);
+  var newCard = new newDeck({
+    question: req.body.question,
+    answer: req.body.answer,
+    known: req.body.known,
+    tag: req.body.tag,
+  });
 
-  newCard.save().then(
-    () => console.log("One entry added"),
+  console.log(newCard);
+  const request = await newCard.save().then(
+    () => console.log("One entry added to:", postDeck),
     (err) => console.log(err)
   );
 });
