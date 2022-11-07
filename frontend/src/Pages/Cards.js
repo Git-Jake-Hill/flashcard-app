@@ -1,32 +1,33 @@
+import AddCardForm from "../Components/AddCardForm";
 import FilterCardDisplay from "../Components/FilterCardDisplay";
+import Card from "../Components/Card";
+import { useState, useEffect } from "react";
 
-function Cards() {
+function Cards({
+  cardList,
+  setCardList,
+  curDeck,
+  setCurDeck,
+  reloadDeck,
+  setReloadDeck,
+}) {
+  const [known, setKnown] = useState("unknown");
+
   return (
     <div className="container pt-4">
       <h1 className="display-1 text-center">Cards</h1>
       <br />
-      <FilterCardDisplay />
-      <div className="addCards">
-        <h2 className=" cardCount mt-4">Add Cards</h2>
-        <form action="POST">
-          <div className="row addCard">
-            <div className="col-8">
-              <div className="mb-2">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="formQuestion"
-                  aria-describedby="new card question"
-                  placeholder="question..."
-                />
-              </div>
-              <div className="mb-2">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="formAnswer"
-                  placeholder="answer..."
-                />
+      <FilterCardDisplay
+        curDeck={curDeck}
+        setCurDeck={setCurDeck}
+        known={known}
+        setKnown={setKnown}
+      />
+      <AddCardForm
+        curDeck={curDeck}
+        reloadDeck={reloadDeck}
+        setReloadDeck={setReloadDeck}
+      />
       <div className="cardList">
         <h2 className=" cardCount mt-4">{cardList.length} Cards</h2>
         {cardList.map((item, index) => {
