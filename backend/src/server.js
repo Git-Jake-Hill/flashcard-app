@@ -17,17 +17,6 @@ const cardSchema = new mongoose.Schema({
   known: { type: Boolean, default: false },
 });
 
-// Model name is Cards
-let Cards = mongoose.model("Cards", cardSchema);
-
-var cards = [
-  {
-    question: "Some question here",
-    answer: "A verry good answer",
-    known: false,
-    tag: "['algo','cs']",
-  },
-];
 // sample post object
 // {
 //     "question": "Some question here",
@@ -52,25 +41,16 @@ app.get("/api/cards/:deck", async (req, res) => {
   }
 });
 
-// cards only
-app.get("/api/cards", async (req, res) => {
-  //   req.send(cards);
-  let currentCards = await Cards.find({});
-  req.send(currentCards);
-});
-
+// add card to db
 app.post("/api/new-card", async (req, res) => {
   const postDeck = req.body.tag;
-  //   console.log(req.body);
-  let newDeck = mongoose.model(postDeck, cardSchema);
-  var newCard = new newDeck({
+  const newDeck = mongoose.model(postDeck, cardSchema);
+  const newCard = new newDeck({
     question: req.body.question,
     answer: req.body.answer,
     known: req.body.known,
     tag: req.body.tag,
   });
-
-  console.log(newCard);
   const request = await newCard.save().then(
     () => console.log("One entry added to:", postDeck),
     (err) => console.log(err)
@@ -93,6 +73,25 @@ app.put("/api/update-known", async (req, res) => {
     res.sendStatus(200);
   } else res.send("No card found");
 });
+
+// delete card from db
+app.delete("/api/delete-card", async (req, res) => {
+  console.log("=====DELETE=====");
+  console.log(req.body);
+  const deck = req.body.tag;
+  const cardId = req.body._id;
+  const curDeck = mongoose.model(deck, cardSchema);
+  const currentCard = await curDeck.findOne({ _id: cardId });
+  console.log("card found:", currentCard);
+
+  if (currentCard) {
+    await curDeck.deleteOne({ _id: cardId });
+    () => console.log("One entry deleted"), (err) => console.log(err);
+    res.sendStatus(200);
+  } else {
+    console.log("No file to delete");
+    res.send("No file to delete");
+  }
 });
 
 mongoose.connect(dbUrl, (err) => {
