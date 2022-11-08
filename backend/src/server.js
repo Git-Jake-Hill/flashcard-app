@@ -75,6 +75,24 @@ app.post("/api/new-card", async (req, res) => {
     () => console.log("One entry added to:", postDeck),
     (err) => console.log(err)
   );
+  res.sendStatus(200);
+});
+
+// update known/unknown value
+app.put("/api/update-known", async (req, res) => {
+  const deck = req.body.tag;
+  const cardId = req.body._id;
+  const curDeck = mongoose.model(deck, cardSchema);
+  const currentCard = await curDeck.findOne({ _id: cardId });
+  if (currentCard) {
+    currentCard.known = !currentCard.known;
+    await currentCard.save().then(
+      () => console.log(currentCard._id, "set to:", currentCard.known),
+      (err) => console.log(err).then(currentCard.sendstatus(200))
+    );
+    res.sendStatus(200);
+  } else res.send("No card found");
+});
 });
 
 mongoose.connect(dbUrl, (err) => {
