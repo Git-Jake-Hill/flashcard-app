@@ -17,28 +17,14 @@ const cardSchema = new mongoose.Schema({
   known: { type: Boolean, default: false },
 });
 
-// sample post object
-// {
-//     "question": "Some question here",
-//     "answer": "A verry good answer",
-//     "known": false,
-//     "tag": "['algo','cs']"
-// }
-
 // get cards from specified deck
 app.get("/api/cards/:deck", async (req, res) => {
   const { deck } = req.params;
-
-  if (deck === "all") {
-    const allCards = [];
-    res.send(allCards);
-  } else {
-    const curDeck = mongoose.model(deck, cardSchema);
-    const currentCards = await curDeck.find({});
-    if (currentCards) {
-      res.send(currentCards);
-    } else res.send([]);
-  }
+  const curDeck = mongoose.model(deck, cardSchema);
+  const currentCards = await curDeck.find({});
+  if (currentCards) {
+    res.send(currentCards);
+  } else res.send("Card not found");
 });
 
 // add card to db
@@ -68,7 +54,7 @@ app.put("/api/update-known", async (req, res) => {
     currentCard.known = !currentCard.known;
     await currentCard.save().then(
       () => console.log(currentCard._id, "set to:", currentCard.known),
-      (err) => console.log(err).then(currentCard.sendstatus(200))
+      (err) => console.log(err)
     );
     res.sendStatus(200);
   } else res.send("No card found");
@@ -76,8 +62,6 @@ app.put("/api/update-known", async (req, res) => {
 
 // delete card from db
 app.delete("/api/delete-card", async (req, res) => {
-  console.log("=====DELETE=====");
-  console.log(req.body);
   const deck = req.body.tag;
   const cardId = req.body._id;
   const curDeck = mongoose.model(deck, cardSchema);
@@ -89,7 +73,6 @@ app.delete("/api/delete-card", async (req, res) => {
     () => console.log("One entry deleted"), (err) => console.log(err);
     res.sendStatus(200);
   } else {
-    console.log("No file to delete");
     res.send("No file to delete");
   }
 });
