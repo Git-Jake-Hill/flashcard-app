@@ -1,13 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
 
-function AddCardForm(props) {
-  const curDeck = props.curDeck;
-  const setPost = props.setPost;
+function AddCardForm({ curDeck, reloadDeck, setReloadDeck }) {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const newCard = {
       question: question,
@@ -15,9 +13,8 @@ function AddCardForm(props) {
       tag: curDeck,
     };
 
-    axios.post(`/api/new-card`, newCard);
-
-    setPost(!props.post);
+    await axios.post(`/api/new-card`, newCard);
+    setReloadDeck(!reloadDeck);
   };
 
   return (
