@@ -10,9 +10,11 @@ function Cards({
   setCurDeck,
   reloadDeck,
   setReloadDeck,
+  known,
+  setKnown,
+  knownGroup,
+  filterList,
 }) {
-  const [known, setKnown] = useState("unknown");
-
   return (
     <div className="container pt-4">
       <h1 className="display-1 text-center">Cards</h1>
@@ -29,9 +31,17 @@ function Cards({
         setReloadDeck={setReloadDeck}
       />
       <div className="cardList">
-        <h2 className=" cardCount mt-4">{cardList.length} Cards</h2>
-        {cardList.map((item, index) => {
-          return <Card key={index} question={item.question} />;
+        <h2 className=" cardCount mt-4">{filterList.length} Cards</h2>
+        {filterList.map((item) => {
+          return (
+            <Card
+              key={item._id}
+              question={item.question}
+              reloadDeck={reloadDeck}
+              setReloadDeck={setReloadDeck}
+              curCard={item}
+            />
+          );
         })}
       </div>
     </div>
