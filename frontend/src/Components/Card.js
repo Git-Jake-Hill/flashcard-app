@@ -1,6 +1,13 @@
 import "./Card.css";
+import axios from "axios";
 
-function Card({ question }) {
+function Card({ question, reloadDeck, setReloadDeck, curCard }) {
+  const deleteCard = async (event) => {
+    event.preventDefault();
+    console.log(curCard);
+    await axios.delete(`/api/delete-card`, { data: curCard });
+    setReloadDeck(!reloadDeck);
+  };
   return (
     <div className="row cardItem">
       <hr />
@@ -17,20 +24,16 @@ function Card({ question }) {
         </button>
         <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           <li>
-            <a className="dropdown-item" href="#">
-              Edit card
-            </a>
+            <button className="dropdown-item">Edit card</button>
           </li>
           <li>
-            <a className="dropdown-item" href="#">
-              Toggle known
-            </a>
+            <button className="dropdown-item">Toggle known</button>
           </li>
           <hr />
           <li>
-            <a className="dropdown-item" href="#">
+            <button className="dropdown-item" onClick={deleteCard}>
               Delete
-            </a>
+            </button>
           </li>
         </ul>
       </div>
