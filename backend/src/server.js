@@ -9,6 +9,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 const dbUrl = process.env.MONGODB_URI;
+const port = 80;
 
 const cardSchema = new mongoose.Schema({
   question: String,
@@ -81,6 +82,6 @@ mongoose.connect(dbUrl, (err) => {
   console.log("mongoDB connection", err);
 });
 
-app.listen(8000, () => {
-  console.log("Listening on port 8000");
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
 });
