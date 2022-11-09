@@ -1,20 +1,15 @@
-function FilterCardDisplay({ curDeck, setCurDeck }) {
-  const handleChange = (event) => {
-    event.preventDefault();
-    setCurDeck(event.target.value);
-  };
-
+function FilterCardDisplay({ curDeck, setCurDeck, known, setKnown }) {
   return (
     <div className="row filterCards">
       <div className="col">
-        <label for="formSelectDeck" className="form-label text-start">
+        <label htmlFor="formSelectDeck" className="form-label text-start">
           Deck
         </label>
         <select
           className="form-select"
           aria-label="Form select deck"
           id="formSelectDeck"
-          onChange={handleChange}
+          onChange={(event) => setCurDeck(event.target.value)}
           value={curDeck}
         >
           <option value="algo">algo</option>
@@ -23,17 +18,19 @@ function FilterCardDisplay({ curDeck, setCurDeck }) {
         </select>
       </div>
       <div className="col">
-        <label for="formSelectDeck" className="form-label text-start">
+        <label htmlFor="formSelectDeck" className="form-label text-start">
           Tag
         </label>
         <select
           className="form-select"
           aria-label="Form select deck"
           id="formSelectDeck"
+          onChange={(event) => setKnown(event.target.value)}
+          value={known}
         >
-          <option defaultValue>All</option>
-          <option value="Known">Known</option>
-          <option value="Unknown">Unknown</option>
+          <option value="all">All</option>
+          <option value="known">Known</option>
+          <option value="unknown">Unknown</option>
         </select>
       </div>
     </div>
