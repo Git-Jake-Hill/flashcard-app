@@ -12,9 +12,9 @@ function FilterCardDisplay({ curDeck, setCurDeck, known, setKnown }) {
           onChange={(event) => setCurDeck(event.target.value)}
           value={curDeck}
         >
-          <option value="algo">algo</option>
-          <option value="cards">cards</option>
-          <option value="all">all</option>
+          <option value="big o notation">bigO Notation</option>
+          <option value="git">Git</option>
+          <option value="linux">Linux</option>
         </select>
       </div>
       <div className="col">

@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 
 function App() {
   const [cardList, setCardList] = useState([]);
-  const [curDeck, setCurDeck] = useState("algo");
+  const [curDeck, setCurDeck] = useState("big o notation");
   const [filterList, setFilterList] = useState([]);
   const [reloadDeck, setReloadDeck] = useState(false);
   const [known, setKnown] = useState("unknown");
