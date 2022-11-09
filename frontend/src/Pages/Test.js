@@ -14,8 +14,14 @@ function Test({
     <div className="container pt-4">
       <h1 className="display-1 text-center">Run Test</h1>
       <br />
-      <FilterCardDisplay curDeck={curDeck} setCurDeck={setCurDeck} />
-      <TestDisplay cardList={cardList} />
+      <TestDisplay
+        cardList={cardList}
+        curDeck={curDeck}
+        reloadDeck={reloadDeck}
+        setReloadDeck={setReloadDeck}
+        known={known}
+        filterList={filterList}
+      />
     </div>
   );
 }
