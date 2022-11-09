@@ -4,6 +4,9 @@
     margin-right: auto;
 }
 
+.cardDisplay {
+    min-height: 180px;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

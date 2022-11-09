@@ -17,7 +17,6 @@ function TestDisplay({
   });
 
   useEffect(() => {
-    console.log("===setShowQuestion:true===");
     // set card to question if deck changes
     setShowQuestion(true);
   }, [curDeck, known]);
@@ -68,7 +67,7 @@ function TestDisplay({
     <>
       <h4 className="cardCount mt-4">{filterList.length} Cards</h4>
       <div className="cardDisplay p-5 my-5 mt-3 border">
-        <h4 className={!showQuestion ? "fst-italic fw-normal" : ""}>
+        <h4 className={!showQuestion ? "fw-normal text-center" : "text-center"}>
           {curCard[showQuestion ? "question" : "answer"]}
         </h4>
       </div>
