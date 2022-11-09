@@ -9,7 +9,19 @@ import { useState, useEffect } from "react";
 function App() {
   const [cardList, setCardList] = useState([]);
   const [curDeck, setCurDeck] = useState("algo");
+  const [filterList, setFilterList] = useState([]);
   const [reloadDeck, setReloadDeck] = useState(false);
+  const [known, setKnown] = useState("unknown");
+
+  useEffect(() => {
+    if (known === "unknown") {
+      setFilterList(cardList.filter((item) => item.known === false));
+    } else if (known === "known") {
+      setFilterList(cardList.filter((item) => item.known === true));
+    } else {
+      setFilterList(cardList);
+    }
+  }, [cardList, known]);
 
   useEffect(() => {
     const loadCardInfo = async () => {
@@ -27,11 +39,14 @@ function App() {
     setCurDeck,
     reloadDeck,
     setReloadDeck,
+    known,
+    setKnown,
+    filterList,
   };
   return (
     <BrowserRouter>
+      <Navbar />
       <div className="App">
-        <Navbar />
         <Routes>
           <Route path="/" element={<Test {...propsObj} />} />
           <Route path="cards" element={<Cards {...propsObj} />} />
