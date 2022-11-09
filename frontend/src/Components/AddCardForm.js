@@ -33,6 +33,7 @@ function AddCardForm({ curDeck, reloadDeck, setReloadDeck }) {
                 id="question"
                 aria-describedby="new card question"
                 placeholder="question..."
+                required="required"
               />
             </div>
             <div className="mb-2">
@@ -44,6 +45,7 @@ function AddCardForm({ curDeck, reloadDeck, setReloadDeck }) {
                 className="form-control"
                 id="answer"
                 placeholder="answer..."
+                required="required"
               />
             </div>
           </div>
