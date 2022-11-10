@@ -34,7 +34,9 @@ function About() {
           considering its running on the free tier. Creating this project has
           deepened my knowledge of fullstack development especially in creating
           a REST API used to connect the React frontend to a MongoDB database on
-          the backend.
+          the backend. I have had to debug issues using the browser Dev Tools
+          and use Postman to test API end points. This experience has helped
+          improve my web development overall.
         </p>
       </div>
     </div>
