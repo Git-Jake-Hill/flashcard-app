@@ -38,6 +38,19 @@ function About() {
           and use Postman to test API end points. This experience has helped
           improve my web development overall.
         </p>
+        <h4 className="fw-normal">Deployment</h4>
+        <p>
+          I deployed this project as a <b>container</b> by creating an image
+          with <b>Docker</b> and hosting it on the Digital Ocean cloud platform.
+          (This could easily be hosted on AWS or Google cloud, but I chose not
+          to for financial reasons) Packaging up the project as a docker image
+          was a great way to take advantage of the Node dependencies that are
+          updated in the package.json file as you go. This project was a great
+          intro into Docker/containers. I can see the benefits of deploying
+          larger projects as a cluster of containers acting as Microservices
+          that can interact, as a way of implementing a <b>CI/CD</b> workflows
+          and allowing flexibility when scaling up the project.
+        </p>
       </div>
     </div>
   );
