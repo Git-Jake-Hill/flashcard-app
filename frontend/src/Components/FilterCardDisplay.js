@@ -3,7 +3,7 @@ function FilterCardDisplay({ curDeck, setCurDeck, known, setKnown }) {
     <div className="row filterCards">
       <div className="col">
         <label htmlFor="formSelectDeck" className="form-label text-start">
-          Deck
+          Topic:
         </label>
         <select
           className="form-select"
@@ -19,7 +19,7 @@ function FilterCardDisplay({ curDeck, setCurDeck, known, setKnown }) {
       </div>
       <div className="col">
         <label htmlFor="formSelectDeck" className="form-label text-start">
-          Tag
+          Filter by:
         </label>
         <select
           className="form-select"
