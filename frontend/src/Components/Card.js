@@ -12,7 +12,7 @@ function Card({ question, reloadDeck, setReloadDeck, curCard }) {
     <div className="row cardItem">
       <hr />
       <div className="col text-truncate card-text">{question}</div>
-      <div className="col-2 ml-6 p-0 d-flex justify-content-end dropdown">
+      <div className="col-2 d-flex justify-content-end dropdown">
         <button
           className="btn btn-outline-secondary btn-sm dropdown-toggle"
           type="button"
