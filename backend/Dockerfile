@@ -1,4 +1,5 @@
-FROM node:12.18.1
+# node:16
+FROM node:16-slim
 ENV NODE_ENV=production
 
 WORKDIR /app
@@ -9,6 +10,6 @@ RUN npm install --production
 
 COPY . .
 
-CMD [ "node", "server.js" ]
-
 EXPOSE 8000
+
+CMD [ "node", "server.js" ]
