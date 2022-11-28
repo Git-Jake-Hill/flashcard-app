@@ -12,6 +12,8 @@ function App() {
   const [filterList, setFilterList] = useState([]);
   const [reloadDeck, setReloadDeck] = useState(false);
   const [known, setKnown] = useState("unknown");
+  const [countTotal, setCountTotal] = useState(0);
+  const [countKnown, setCountKnown] = useState(0);
 
   useEffect(() => {
     if (known === "unknown") {
@@ -22,6 +24,11 @@ function App() {
       setFilterList(cardList);
     }
   }, [cardList, known]);
+
+  useEffect(() => {
+    setCountTotal(cardList.length);
+    setCountKnown(cardList.filter((item) => item.known === true).length);
+  }, [cardList]);
 
   useEffect(() => {
     const loadCardInfo = async () => {
@@ -42,6 +49,8 @@ function App() {
     known,
     setKnown,
     filterList,
+    countTotal,
+    countKnown,
   };
   return (
     <BrowserRouter>
