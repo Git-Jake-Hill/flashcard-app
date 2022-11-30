@@ -12,6 +12,7 @@ function FilterCardDisplay({ curDeck, setCurDeck, known, setKnown }) {
           onChange={(event) => setCurDeck(event.target.value)}
           value={curDeck}
         >
+                    {"// TODO change options to be dynamic"}
           <option value="big o notation">bigO Notation</option>
           <option value="git">Git</option>
           <option value="linux">Linux</option>
