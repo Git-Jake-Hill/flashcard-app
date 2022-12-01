@@ -2,7 +2,10 @@ function FilterCardDisplay({ curDeck, setCurDeck, known, setKnown }) {
   return (
     <div className="row filterCards">
       <div className="col">
-        <label htmlFor="formSelectDeck" className="form-label text-start">
+                <label
+                    htmlFor="formSelectDeck"
+                    className="form-label text-start"
+                >
           Topic:
         </label>
         <select
