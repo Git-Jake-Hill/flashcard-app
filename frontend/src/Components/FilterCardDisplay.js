@@ -22,7 +22,10 @@ function FilterCardDisplay({ curDeck, setCurDeck, known, setKnown }) {
         </select>
       </div>
       <div className="col">
-        <label htmlFor="formSelectDeck" className="form-label text-start">
+                <label
+                    htmlFor="formSelectDeck"
+                    className="form-label text-start"
+                >
           Filter by:
         </label>
         <select
