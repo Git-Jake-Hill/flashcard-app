@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + "/build"));
-console.log(__dirname);
+// console.log(__dirname);
 const dbUrl = process.env.MONGODB_URI;
 const port = 8000;
 
@@ -17,6 +17,12 @@ const cardSchema = new mongoose.Schema({
   answer: String,
   tag: String,
   known: { type: Boolean, default: false },
+});
+
+app.get(/^(?!\/api\/).*/, (req, res) => {
+  console.log("server index file here.");
+  console.log(__dirname + "\\build\\index.html");
+  res.sendFile(__dirname + "\\build\\index.html");
 });
 
 // get cards from specified deck
