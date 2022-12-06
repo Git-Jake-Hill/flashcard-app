@@ -18,6 +18,7 @@ function FilterCardDisplay({ curDeck, setCurDeck, known, setKnown }) {
                     {"// TODO change options to be dynamic"}
                     <option value="big o notation">bigO Notation</option>
                     <option value="git">Git</option>
+                    <option value="graphs">Graphs</option>
                     <option value="linux">Linux</option>
                 </select>
             </div>
